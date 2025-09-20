@@ -1156,7 +1156,7 @@ impl IncrementalOperator for AggregateOperator {
 
                         // Serialize the aggregate state with group key (even for deletion, we need a row)
                         let state_blob = agg_state.to_blob(&self.aggregates, group_key);
-                        let blob_value = Value::Blob(state_blob);
+                        let blob_value = Value::Blob(state_blob.as_slice().into());
 
                         // Build the aggregate storage format: [operator_id, zset_hash, element_id, value, weight]
                         let operator_id_val = Value::Integer(operator_storage_id);
