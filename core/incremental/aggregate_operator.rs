@@ -1556,7 +1556,7 @@ impl ScanState {
 
         // Compare zset_hash as blob
         if let RefValue::Blob(rec_zset_blob) = rec_zset_hash {
-            if let Some(rec_hash) = Hash128::from_blob(rec_zset_blob.to_slice()) {
+            if let Some(rec_hash) = Hash128::from_blob(rec_zset_blob.value.to_slice()) {
                 if rec_hash != zset_hash {
                     return Ok(IOResult::Done(None));
                 }
